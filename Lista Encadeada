@@ -1,0 +1,42 @@
+class Fruta:
+    def __init__(self, nome):
+        self.nome = nome
+        self.prox = None
+
+
+class FrutaLista:
+    def __init__(self):
+        self.primeiro = None
+
+    def inserir_no_final(self, nome):
+        novo_no = Fruta(nome)
+
+        if self.primeiro is None:
+            self.primeiro = novo_no
+        else:
+            atual = self.primeiro
+            while atual.prox is not None:
+                atual = atual.prox
+            atual.prox = novo_no
+
+    def listar(self):
+        if self.primeiro is None:
+            print("A lista de frutas está vazia.")
+            return
+
+        atual = self.primeiro
+        while atual is not None:
+            print(atual.nome)
+            atual = atual.prox
+
+    def procurar(self, nome):
+        atual = self.primeiro
+        posicao = 0
+
+        while atual is not None:
+            if atual.nome == nome:
+                return f"Fruta '{nome}' encontrada na posição {posicao}."
+            atual = atual.prox
+            posicao += 1
+
+        return f"Fruta '{nome}' não encontrada."
